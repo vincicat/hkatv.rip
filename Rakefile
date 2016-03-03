@@ -4,7 +4,7 @@ Bundler.require :default
 require 'fileutils'
 require 'json'
 task :upload do
-  AWS_BUCKET="isatvdead.reality.hk"
+  AWS_BUCKET="hkatv.rip"
   AWS_REGION="ap-southeast-1"
   credentials = JSON.load(File.read('credentials.json'))
 
