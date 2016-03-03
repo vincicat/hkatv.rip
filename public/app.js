@@ -4,7 +4,7 @@ var lastMessageQuery = myDataRef.endAt().limit(100)
 lastMessageQuery.on('child_added', function(snapshot) {
   var message = snapshot.val();
   displayChatMessage(message.name, message.text);
-})
+});
 
 function displayChatMessage(name, text) {
   $('#messages').append(
@@ -24,11 +24,12 @@ $('#name').on('input propertychange paste', function (e) {
 
 $('#message').on('keydown', function (e) {
   if (e.keyCode == 13) {
-    var name = $('#name').val()
-    var text = $('#message').val()
+    var name = $('#name').val();
+    var text = $('#message').val();
     if (name.length > 0 && text.length > 0) {
-      myDataRef.push({name: name, text: text})
-      $('#messageInput').val('')
+      myDataRef.push({ name: name, text: text });
+      $('#message').val('');
     }
   }
-})
+});
+
