@@ -11,8 +11,8 @@ function displayChatMessage(name, text) {
     '<div class="marquee" style="' +
       'top: ' + Math.floor(Math.random() * 90) + '%;' +
       'font-size: ' + Math.floor(Math.random() * 7 + 20) + 'pt;' +
-      'animation-delay: ' + Math.floor(Math.random() * 15) + 's;' +
-      'animation-duration: ' + Math.floor(Math.random() * 15 + 5) + 's;' +
+      'animation-delay: ' + Math.floor(Math.random() * 10) + 's;' +
+      'animation-duration: ' + Math.floor(Math.random() * 25 + 10) + 's;' +
     '">' + text + '</div>'
   );
 }
