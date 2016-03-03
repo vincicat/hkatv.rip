@@ -1,3 +1,8 @@
+@keyframes marquee {
+  0%   { left: 100%; }
+  100% { left: -100%; }
+}
+
 body {
   margin: 0;
   background: #000;
@@ -70,6 +75,14 @@ video {
   bottom: 40px;
   height: calc(100vh - 40px);
   max-height: calc(100vh - 40px);
+}
+#messages .marquee {
+  position: absolute;
+  color: #fff;
+  animation: marquee 10s linear infinite;
+  white-space: nowrap;
+  left: 100%;
+  font-size: 16px;
 }
 
 h1 {

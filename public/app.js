@@ -7,8 +7,14 @@ lastMessageQuery.on('child_added', function(snapshot) {
 })
 
 function displayChatMessage(name, text) {
-  $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messages'));
-  $('#messages')[0].scrollTop = $('#messages')[0].scrollHeight;
+  $('#messages').append(
+    '<div class="marquee" style="' +
+      'top: ' + Math.floor(Math.random() * 100) + '%;' +
+      'font-size: ' + Math.floor(Math.random() * 7 + 20) + 'pt;' +
+      'animation-delay: ' + Math.floor(Math.random() * 15) + 's;' +
+      'animation-duration: ' + Math.floor(Math.random() * 15 + 5) + 's;' +
+    '">' + text + '</div>'
+  );
 }
 
 $('#message').keypress(function (e) {
