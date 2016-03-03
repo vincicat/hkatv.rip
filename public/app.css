@@ -20,7 +20,13 @@ video {
   transform: translateX(-50%) translateY(-50%);
   background: url(/cover.jpg) no-repeat;
   background-size: cover;
-  transition: 1s opacity;
+  transition: 1s opacity, 0.5s -webkit-filter, 0.5s filter;
+  -webkit-filter: grayscale(90%);
+  filter: grayscale(90%);
+}
+body:hover video {
+  -webkit-filter: grayscale(30%);
+  filter: grayscale(30%);
 }
 .stopfade {
    opacity: .5;
