@@ -17,7 +17,12 @@ function displayChatMessage(name, text) {
   );
 }
 
-$('#message').keypress(function (e) {
+$('#name').val(localStorage.getItem('name'));
+$('#name').on('input propertychange paste', function (e) {
+  localStorage.setItem('name', $(this).val());
+});
+
+$('#message').on('keydown', function (e) {
   if (e.keyCode == 13) {
     var name = $('#name').val()
     var text = $('#message').val()
