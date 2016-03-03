@@ -9,7 +9,7 @@ lastMessageQuery.on('child_added', function(snapshot) {
 function displayChatMessage(name, text) {
   $('#messages').append(
     '<div class="marquee" style="' +
-      'top: ' + Math.floor(Math.random() * 100) + '%;' +
+      'top: ' + Math.floor(Math.random() * 90) + '%;' +
       'font-size: ' + Math.floor(Math.random() * 7 + 20) + 'pt;' +
       'animation-delay: ' + Math.floor(Math.random() * 15) + 's;' +
       'animation-duration: ' + Math.floor(Math.random() * 15 + 5) + 's;' +
