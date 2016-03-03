@@ -1,6 +1,7 @@
 var myDataRef = new Firebase('https://atv-rip.firebaseio.com/messages');
 
-myDataRef.on('child_added', function(snapshot) {
+var lastMessageQuery = myDataRef.endAt().limit(100)
+lastMessageQuery.on('child_added', function(snapshot) {
   var message = snapshot.val();
   displayChatMessage(message.name, message.text);
 })
