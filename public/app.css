@@ -93,10 +93,10 @@ body:hover video {
 #messages .marquee {
   position: absolute;
   color: #fff;
-  animation: marquee 10s linear infinite;
+  animation: marquee 15s linear infinite;
   white-space: nowrap;
   left: 100%;
-  font-size: 16px;
+  font-size: 20pt;
 }
 
 h1 {
