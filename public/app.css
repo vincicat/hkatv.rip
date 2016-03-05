@@ -43,6 +43,7 @@ body:hover video {
   text-align: center;
   flex: 1;
   align-self: center;
+  white-space: nowrap;
 
   display: flex;
   flex-direction: column;
@@ -100,7 +101,7 @@ body:hover video {
 }
 
 h1 {
-  font-size: 240pt;
+  font-size: 32vw;
   font-weight: 100;
   text-transform: uppercase;
   margin: 0;
@@ -112,10 +113,12 @@ body:hover h1 {
   opacity: 0.85;
 }
 
-@media screen and (max-width: 500px) {
-  div{width:70%;}
-}
 @media screen and (max-device-width: 800px) {
-  html { background: url(/cover.jpg) #000 no-repeat center center fixed; }
-  #bgvid { display: none; }
+  body {
+    background: url(/cover.jpg) #000 no-repeat;
+    background-size: cover;
+  }
+  #bgvid, #input {
+    display: none;
+  }
 }
