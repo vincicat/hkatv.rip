@@ -1,4 +1,4 @@
-(function () {
+(function ($) {
   var isMobile = (window.matchMedia('(max-device-width: 800px)').matches);
 
   // Queue messages
@@ -12,7 +12,7 @@
   });
 
   // Display message as marquee
-  var marqueeHolder = $('#messages')[0];
+  var marqueeHolder = $('#messages');
 
   function displayChatMessage(text) {
     var marqueeDiv = document.createElement('div');
@@ -35,23 +35,23 @@
   }, 1000);
 
   // Form
-  var $nameEl = $('#name');
-  var $messageEl = $('#message');
+  var nameEl = $('#name');
+  var messageEl = $('#message');
 
-  $nameEl.val(localStorage.getItem('name'));
-  $nameEl.on('input propertychange paste', function (e) {
-    localStorage.setItem('name', $nameEl.val());
+  nameEl.value = localStorage.getItem('name');
+  nameEl._.addEventListener('input propertychange paste', function (e) {
+    localStorage.setItem('name', nameEl.value);
   });
 
-  $messageEl.on('keydown', function (e) {
+  messageEl.addEventListener('keydown', function (e) {
     if (e.keyCode == 13) {
-      var name = $nameEl.val();
-      var text = $messageEl.val();
+      var name = nameEl.value;
+      var text = messageEl.value;
       if (name.length > 0 && text.length > 0) {
         dataRef.push({ name: name, text: text });
-        $messageEl.val('');
+        messageEl.value = '';
       }
     }
   });
-})();
+})(Bliss);
 
