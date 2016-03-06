@@ -1,19 +1,11 @@
 (function ($) {
+  var dataRef = new Firebase('https://atv-rip.firebaseio.com/messages');
   var isMobile = (window.matchMedia('(max-device-width: 800px)').matches);
 
-  // Queue messages
+  // Display message as marquee
   var pendingMessages = [];
 
-  var dataRef = new Firebase('https://atv-rip.firebaseio.com/messages');
-  var lastMessageQuery = dataRef.limitToLast(isMobile ? 25 : 100);
-  lastMessageQuery.on('child_added', function(snapshot) {
-    var message = snapshot.val();
-    pendingMessages.push(message.text);
-  });
-
-  // Display message as marquee
   var marqueeHolder = $('#messages');
-
   function displayChatMessage(text) {
     var marqueeDiv = document.createElement('div');
     marqueeDiv.className = 'marquee';
@@ -33,6 +25,13 @@
       displayChatMessage(message);
     }
   }, 1000);
+
+  // Queue messages once received
+  var lastMessageQuery = dataRef.limitToLast(isMobile ? 25 : 100);
+  lastMessageQuery.on('child_added', function (snapshot) {
+    var message = snapshot.val();
+    pendingMessages.push(message.text);
+  });
 
   // Form
   var nameEl = $('#name');
