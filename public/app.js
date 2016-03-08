@@ -8,13 +8,16 @@ $(function(){
 
   var cacheSize = 5;
 
+  var started = false;
+
   var lastMessageQuery = myDataRef.limitToLast(100);
   lastMessageQuery.on('child_added', function(snapshot) {
+    console.log("receving...")
+    started = true;
     var message = snapshot.val();
     pendingMessages.push(message.text);
   });
 
-  console.log(pendingMessages)
   var $container = $('#messages');
 
   var maxLine;
@@ -26,6 +29,11 @@ $(function(){
   initScreen();
 
   mainThread = setInterval(function () {
+    if (!started) {
+      console.log("waiting messages...")
+      return true;
+    }
+
     for (var j = 0; j < cacheSize; j++) {
 
       var message = pendingMessages.shift();
