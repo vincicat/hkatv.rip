@@ -88,8 +88,10 @@ $(function(){
 
     if(lineDispatched >= maxLine) {
       lineDispatched = 0; //start over
+
     }
   }
+
   $container.on('animationend', '.line', function(){
     var $el = $(this)
     $el.hide()
@@ -99,23 +101,23 @@ $(function(){
   } )
 
 
-  $('#name')
-    .val(localStorage.getItem('name'))
-    .on('input propertychange paste', function (e) {
-      localStorage.setItem('name', $(this).val());
-    });
+  // Form
+  var nameEl = $('#name');
+  var messageEl = $('#message');
 
-  $('#message').on('keydown', function (e) {
+  nameEl.value = localStorage.getItem('name');
+  nameEl._.addEventListener('input propertychange paste', function (e) {
+    localStorage.setItem('name', nameEl.value);
+  });
+
+  messageEl.addEventListener('keydown', function (e) {
     if (e.keyCode == 13) {
-      var name = $('#name').val();
-      var text = $('#message').val();
+      var name = nameEl.value;
+      var text = messageEl.value;
       if (name.length > 0 && text.length > 0) {
-        myDataRef.push({ name: name, text: text });
-        $('#message').val('');
+        dataRef.push({ name: name, text: text });
+        messageEl.value = '';
       }
     }
   });
-
-
-
-})
+})(Bliss);

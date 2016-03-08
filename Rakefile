@@ -2,6 +2,7 @@ require 'bundler'
 Bundler.require :default
 
 require 'fileutils'
+require 'mime-types'
 require 'json'
 task :upload do
   AWS_BUCKET="hkatv.rip"
@@ -18,15 +19,11 @@ task :upload do
     target = file.gsub("./public/", "")
     filename = File.basename(file)
     filetype = filename.split(".").last
+    mimetype = MIME::Types.type_for(file).first.simplified
 
     unless File.directory?(file)
-      if filetype == "svg"
-        puts "uploading svg " + target
-        s3.put_object(acl: "public-read", body: open(file), bucket: AWS_BUCKET, key: target, content_type: "image/svg+xml")
-      else
-        puts "uploading " + target
-        s3.put_object(acl: "public-read", body: open(file), bucket: AWS_BUCKET, key: target)
-      end
+      puts "Uploading " + target
+      s3.put_object(acl: "public-read", body: open(file), bucket: AWS_BUCKET, key: target, content_type: mimetype)
     end
   end
 end
