@@ -14,7 +14,7 @@ $(function(){
     pendingMessages.push(message.text);
   });
 
-
+  console.log(pendingMessages)
   var $container = $('#messages');
 
   var maxLine;
@@ -102,22 +102,21 @@ $(function(){
 
 
   // Form
-  var nameEl = $('#name');
-  var messageEl = $('#message');
+  $('#name')
+    .val(localStorage.getItem('name'))
+    .on('input propertychange paste', function (e) {
+      localStorage.setItem('name', $(this).val());
+    });
 
-  nameEl.value = localStorage.getItem('name');
-  nameEl._.addEventListener('input propertychange paste', function (e) {
-    localStorage.setItem('name', nameEl.value);
-  });
 
-  messageEl.addEventListener('keydown', function (e) {
+  $('#message').on('keydown', function (e) {
     if (e.keyCode == 13) {
-      var name = nameEl.value;
-      var text = messageEl.value;
+      var name = $('#name').val();
+      var text = $('#message').val();
       if (name.length > 0 && text.length > 0) {
-        dataRef.push({ name: name, text: text });
-        messageEl.value = '';
+        myDataRef.push({ name: name, text: text });
+        $('#message').val('');
       }
     }
   });
-})(Bliss);
+});
